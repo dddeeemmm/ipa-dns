@@ -1,13 +1,23 @@
 ---
 
-- name: IPA set DNS records for FreeIpa
+- name: '{{ ipa_zone_state }} DNS-ZONE'
+  ipa_dnszone:
+    ipa_host: '{{ ipa_hosts | random }}'
+    ipa_user: '{{ ipa_username }}'
+    ipa_pass: '{{ ipa_password }}'
+    zone_name: '{{ ipa_dns_zone }}'
+    state: '{{ ipa_zone_state }}'
+    dynamicupdate: '{{ ipa_zone_dynamicupdate }}'
+
+- name: 'Set DNS-RECORDS for {{ ipa_dns_zone }}'
   ipa_dnsrecord:
     ipa_host: '{{ ipa_hosts | random }}'
-    ipa_user: '{{ os_username }}'
-    ipa_pass: '{{ os_password }}'
-    zone_name: '{{ item.zone }}'
+    ipa_user: '{{ ipa_username }}'
+    ipa_pass: '{{ ipa_password }}'
+    zone_name: '{{ ipa_dns_zone }}'
     record_type: '{{ item.type }}'
     record_name: '{{ item.name }}'
     record_value: '{{ item.value }}'
     state: '{{ item.state }}'
-  loop: '{{ dns_records }}'
+  loop: '{{ ipa_dns_records }}'
+  when: ipa_zone_state == 'present'

@@ -1,6 +1,8 @@
 ---
 # defaults file for ipa-dns
 
+ipa_zone_state: present
+ipa_zone_dynamicupdate: false
 ipa_username_default: ''
 ipa_password_default: ''
 ipa_hosts: []
