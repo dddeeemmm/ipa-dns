@@ -39,4 +39,3 @@ Author Information
 ------------------
 
     Dmitrij Petrov
-    https://github.com/dddeeemmm
