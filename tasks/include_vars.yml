@@ -1,0 +1,4 @@
+---
+
+- name: include records
+  include_vars: vars/{{ ipa_dns_zone }}.yml

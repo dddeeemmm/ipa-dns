@@ -1,0 +1,6 @@
+---
+# defaults file for ipa-dns
+
+ipa_username_default: ''
+ipa_password_default: ''
+ipa_hosts: []

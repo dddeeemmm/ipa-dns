@@ -1,0 +1,70 @@
+---
+
+- block:
+
+    - pause:
+        prompt: Enter DNS-ZONE name
+        echo: yes
+      register: result
+
+    - name: set ipa_dns_zone from user input
+      set_fact:
+        ipa_dns_zone: '{{ result.user_input }}'
+
+  when: ipa_dns_zone is not defined or ipa_dns_zone == ''
+
+
+- block:
+
+    - name: set ipa_username from env
+      set_fact:
+        ipa_username: '{{ ansible_env.OS_USERNAME }}'
+
+  rescue:
+
+    - block:
+
+        - name: set ipa_username from defaults
+          set_fact:
+            ipa_username: '{{ ipa_username_default }}'
+
+      rescue:
+
+        - pause:
+            prompt: Please enter you User Name
+            echo: yes
+          register: result
+
+        - name: set ipa_username from user input
+          set_fact:
+            ipa_username: '{{ result.user_input }}'
+
+  when: ipa_username is not defined or ipa_username == ''
+
+
+- block:
+
+    - name: set ipa_password from env
+      set_fact:
+        ipa_password: '{{ ansible_env.OS_PASSWORD }}'
+
+  rescue:
+
+    - block:
+
+        - name: set ipa_password from defaults
+          set_fact:
+            ipa_password: '{{ ipa_password_default }}'
+
+      rescue:
+
+        - pause:
+            prompt: Please enter your Password
+            echo: no
+          register: result
+
+        - name: set ipa_password from user input
+          set_fact:
+            ipa_password: '{{ result.user_input }}'
+
+  when: ipa_password is not defined or ipa_password == ''

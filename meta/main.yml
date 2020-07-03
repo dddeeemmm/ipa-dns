@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Dmitrij Petrov
+  description: Manage Free IPA DNS zones and records
+  company: LLC Balance Platform
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+   platforms:
+   - name: all
+     versions:
+     - all
+
+  galaxy_tags:
+    - FreeIPA
+    - DNS
+    - IPA
+
+dependencies: []

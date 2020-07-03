@@ -1,0 +1,13 @@
+---
+
+- name: IPA set DNS records for FreeIpa
+  ipa_dnsrecord:
+    ipa_host: '{{ ipa_hosts | random }}'
+    ipa_user: '{{ os_username }}'
+    ipa_pass: '{{ os_password }}'
+    zone_name: '{{ item.zone }}'
+    record_type: '{{ item.type }}'
+    record_name: '{{ item.name }}'
+    record_value: '{{ item.value }}'
+    state: '{{ item.state }}'
+  loop: '{{ dns_records }}'

@@ -1,0 +1,10 @@
+---
+
+ipa_dns_records:
+  - { state: present, zone: test.domain.ru, type: A,      name: 'front',        value: '10.0.10.1' }
+  - { state: present, zone: test.domain.ru, type: AAAA,   name: 'api',          value: '::1' }
+  - { state: present, zone: test.domain.ru, type: CNAME,  name: 'monitoring',   value:  'prometheus.domain.ru' }
+  - { state: present, zone: test.domain.ru, type: PTR,    name: '10.0.10.1',    value: 'internal.ipa.example.com' }
+  - { state: present, zone: test.domain.ru, type: TXT,    name: '_kerberos',    value: 'EXAMPLE.COM' }
+  - { state: present, zone: test.domain.ru, type: SRV,    name: '_kerberos',    value: '10 50 88 ipa.example.com' }
+  - { state: present, zone: test.domain.ru, type: MX,     name: '@',            value: 'mailserver' }

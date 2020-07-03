@@ -1,0 +1,23 @@
+---
+
+# ansible-playbook /tests/test.yml
+
+# simple (all vars will be asked interactively)
+- hosts: localhost
+  roles:
+    - ipa-dns
+
+# setup vars
+- hosts: localhost
+  vars:
+    ipa_dns_zone: zone-a.domain.ru
+    ipa_username: username
+    ipa_password: password
+  roles:
+    - ipa-dns
+
+# multiply zones
+- hosts: localhost
+  roles:
+    - { role: ipa-dns, ipa_dns_zone: zone-a.domain.ru, tag: zone-a }
+    - { role: ipa-dns, ipa_dns_zone: zone-b.domain.ru, tag: zone-b }
